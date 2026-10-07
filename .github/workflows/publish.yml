@@ -1,0 +1,46 @@
+name: Publish
+
+on:
+  release:
+    types:
+      - released
+
+jobs:
+  library:
+    name: Release build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+        # Base64 decodes and pipes the GPG key content into the secret file
+      - name: Prepare environment
+        env:
+          GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
+        run: sudo bash -c "echo '$GPG_KEY_CONTENTS' | base64 -d > '$SIGNING_SECRET_KEY_RING_FILE'"
+
+      - name: Publish to staging
+        run: ./gradlew :harmonic-colors:publishReleasePublicationToSonatypeRepository --max-workers 1
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
+
+        # Moves the staged upload to the Central Publisher Portal
+      - name: Upload to Maven Central
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/dev.jahir'
+          method: 'POST'
+          bearerToken: ${{ secrets.OSSRH_TOKEN }}
+          timeout: 10000
+          preventFailureOnNoResponse: 'true'

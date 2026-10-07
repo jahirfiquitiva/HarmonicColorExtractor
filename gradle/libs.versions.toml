@@ -4,6 +4,8 @@ compileSdk = "37"
 minSdk = "21"
 demoMinSdk = "23"
 appcompat = "1.8.0"
+# Newer versions need minSdk 23, the library supports 21
+#noinspection GradleDependency
 core = "1.16.0"
 palette = "1.0.0"
 lifecycle = "2.11.0"
