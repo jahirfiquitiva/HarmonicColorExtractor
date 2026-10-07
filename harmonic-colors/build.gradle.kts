@@ -20,3 +20,7 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.androidx.palette)
 }
+
+kotlin {
+    explicitApi()
+}
