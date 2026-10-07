@@ -20,7 +20,7 @@ import androidx.annotation.ColorInt
 
 /** Colors extracted by [HarmonicColorExtractor]: a background color and two text colors for it */
 public data class HarmonicColors(
-    @ColorInt public val backgroundColor: Int,
-    @ColorInt public val firstForegroundColor: Int,
-    @ColorInt public val secondForegroundColor: Int,
+    @get:ColorInt public val backgroundColor: Int,
+    @get:ColorInt public val firstForegroundColor: Int,
+    @get:ColorInt public val secondForegroundColor: Int,
 )
