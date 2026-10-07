@@ -8,10 +8,14 @@ android {
 
     defaultConfig {
         applicationId = "dev.jahir.harmonic.colors.demo"
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = libs.versions.demoMinSdk.get().toInt()
         targetSdk = libs.versions.compileSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     compileOptions {
@@ -23,4 +27,5 @@ android {
 dependencies {
     implementation(project(":harmonic-colors"))
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.runtime)
 }
