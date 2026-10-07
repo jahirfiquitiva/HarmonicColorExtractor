@@ -310,22 +310,22 @@ public class HarmonicColorExtractor {
             if (satisfiesTextContrast(other, color)) return color
             val hsl = FloatArray(3)
             ColorUtils.colorToHSL(color, hsl)
-            var foreground = color
             var low = hsl[2]
             var high = 1f
             var i = 0
             while (i < 15 && high - low > 0.00001) {
                 val lightness = (low + high) / 2
                 hsl[2] = lightness
-                foreground = ColorUtils.HSLToColor(hsl)
-                if (ColorUtils.calculateContrast(foreground, other) > MIN_TEXT_CONTRAST) {
+                if (ColorUtils.calculateContrast(ColorUtils.HSLToColor(hsl), other) > MIN_TEXT_CONTRAST) {
                     high = lightness
                 } else {
                     low = lightness
                 }
                 i++
             }
-            return foreground
+            // AOSP returns the last color tried, which can end just below the minimum contrast
+            hsl[2] = high
+            return ColorUtils.HSLToColor(hsl)
         }
 
         @ColorInt

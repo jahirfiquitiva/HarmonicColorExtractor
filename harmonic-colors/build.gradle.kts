@@ -8,6 +8,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -19,6 +20,9 @@ android {
 dependencies {
     implementation(libs.androidx.core)
     implementation(libs.androidx.palette)
+
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.runner)
 }
 
 kotlin {
