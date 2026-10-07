@@ -2,16 +2,16 @@ package com.apitiphy.harmoniccolorextractor;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.support.v7.graphics.Palette;
+import androidx.palette.graphics.Palette;
 
 import java.util.List;
 
-import static android.support.v4.graphics.ColorUtils.HSLToColor;
-import static android.support.v4.graphics.ColorUtils.LABToColor;
-import static android.support.v4.graphics.ColorUtils.calculateContrast;
-import static android.support.v4.graphics.ColorUtils.calculateLuminance;
-import static android.support.v4.graphics.ColorUtils.colorToHSL;
-import static android.support.v4.graphics.ColorUtils.colorToLAB;
+import static androidx.core.graphics.ColorUtils.HSLToColor;
+import static androidx.core.graphics.ColorUtils.LABToColor;
+import static androidx.core.graphics.ColorUtils.calculateContrast;
+import static androidx.core.graphics.ColorUtils.calculateLuminance;
+import static androidx.core.graphics.ColorUtils.colorToHSL;
+import static androidx.core.graphics.ColorUtils.colorToLAB;
 
 public class HarmonicColorExtractor {
 
