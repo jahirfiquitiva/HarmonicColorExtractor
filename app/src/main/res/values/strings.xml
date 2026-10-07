@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Harmonic Color Extractor Demo</string>
+    <string name="app_name">Harmonic Colors</string>
+    <string name="pick_image">Pick an image</string>
+    <string name="region_bottom">Bottom</string>
+    <string name="region_top">Top</string>
+    <string name="region_left">Left</string>
+    <string name="region_right">Right</string>
+    <string name="region_whole">Whole image</string>
+    <string name="empty_message">Pick an image to extract its colors.</string>
+    <string name="error_message">Couldn\'t load that image. Try another one.</string>
+    <string name="primary_text">Primary text %1$s</string>
+    <string name="secondary_text">Secondary text %1$s</string>
+    <string name="background_text">Background %1$s</string>
 </resources>
