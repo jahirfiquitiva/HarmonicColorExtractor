@@ -1,5 +1,7 @@
 /*
  * Copyright 2019 Leonardo Salazar
+ * Copyright 2026 Jahir Fiquitiva
+ *
  * Modified by Jahir Fiquitiva: converted to Kotlin.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

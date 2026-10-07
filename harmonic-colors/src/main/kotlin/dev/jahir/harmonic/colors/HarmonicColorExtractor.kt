@@ -1,7 +1,9 @@
 /*
  * Copyright 2017 The Android Open Source Project
  * Copyright 2019 Leonardo Salazar
- * Modified by Jahir Fiquitiva: converted to Kotlin.
+ * Copyright 2026 Jahir Fiquitiva
+ *
+ * Modified by Jahir Fiquitiva: converted to Kotlin and fixed the dark background contrast search.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
