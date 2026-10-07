@@ -9,6 +9,8 @@ jobs:
   library:
     name: Release build and publish
     runs-on: ubuntu-latest
+    env:
+      SIGNING_SECRET_KEY_RING_FILE: ${{ github.workspace }}/secring.gpg
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -23,8 +25,7 @@ jobs:
       - name: Prepare environment
         env:
           GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
-          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
-        run: sudo bash -c "echo '$GPG_KEY_CONTENTS' | base64 -d > '$SIGNING_SECRET_KEY_RING_FILE'"
+        run: echo "$GPG_KEY_CONTENTS" | base64 -d > "$SIGNING_SECRET_KEY_RING_FILE"
 
       - name: Publish to staging
         run: ./gradlew :harmonic-colors:publishReleasePublicationToSonatypeRepository --max-workers 1
@@ -33,7 +34,6 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-          SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
 
         # Moves the staged upload to the Central Publisher Portal
       - name: Upload to Maven Central
